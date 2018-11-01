@@ -41,6 +41,7 @@
 (defcustom prelude-auto-save t
   "Non-nil values enable Prelude's auto save."
   :type 'boolean
+
   :group 'prelude)
 
 (defcustom prelude-guru t

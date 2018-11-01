@@ -33,16 +33,43 @@
 ;;; Code:
 
 (require 'prelude-programming)
-(prelude-require-packages '(scala-mode ensime))
+(prelude-require-packages '(scala-mode
+                            ;; ensime
+                            use-package))
+
+(use-package ensime
+  :ensure t
+  :pin melpa)
+(use-package sbt-mode
+  :pin melpa)
+
+(use-package scala-mode
+  :pin melpa)
 
 (defun prelude-scala-mode-defaults ()
   (subword-mode +1)
-  (ensime-mode +1))
+  ;; (ensime-mode +1)
+  )
 
 (setq prelude-scala-mode-hook 'prelude-scala-mode-defaults)
 
+;; (setq ensime-startup-notification nil)
+(setq sbt:prefer-nested-projects t)
+
 (add-hook 'scala-mode-hook (lambda ()
                              (run-hooks 'prelude-scala-mode-hook)))
+
+(require 'sbt-mode)
+
+(setenv "PATH" (concat (getenv "PATH") ":C:\\Program Files (x86)\\sbt\\bin"))
+(setq sbt:program-name "sbt.bat")
+(setq ensime-sbt-command "C:\\Program Files (x86)\\sbt\\bin\\sbt.bat")
+
+(setenv "JDK_HOME" "C:\\Program Files\\Java\\jdk1.8.0_131\\")
+
+
+(setq sbt:program-options '())
+(setenv "SBT_OPTS" "-Djline.terminal=jline.UnsupportedTerminal")
 (provide 'prelude-scala)
 
 ;;; prelude-scala.el ends here

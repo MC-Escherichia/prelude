@@ -33,7 +33,7 @@
 ;;; Code:
 
 (require 'prelude-programming)
-(prelude-require-packages '(rainbow-delimiters))
+(prelude-require-packages '(rainbow-delimiters lispy))
 
 ;; Lisp configuration
 (define-key read-expression-map (kbd "TAB") 'completion-at-point)
@@ -46,6 +46,7 @@
 
 ;; a great lisp coding hook
 (defun prelude-lisp-coding-defaults ()
+  (lispy-mode +1)
   (smartparens-strict-mode +1)
   (rainbow-delimiters-mode +1))
 
@@ -54,6 +55,7 @@
 ;; interactive modes don't need whitespace checks
 (defun prelude-interactive-lisp-coding-defaults ()
   (smartparens-strict-mode +1)
+  (lispy-mode 1)
   (rainbow-delimiters-mode +1)
   (whitespace-mode -1))
 

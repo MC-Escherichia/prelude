@@ -38,8 +38,11 @@
 ;; accessing a package repo over https on Windows is a no go, so we
 ;; fallback to http there
 (if (eq system-type 'windows-nt)
-    (add-to-list 'package-archives
-                 '("melpa" . "http://melpa.org/packages/") t)
+    (progn
+      (add-to-list 'package-archives
+                   '("melpa" . "http://melpa.org/packages/") t)
+      (add-to-list 'package-archives
+                   '("melpa-stable" . "http://stable.melpa.org/packages/") t))
   (add-to-list 'package-archives
                '("melpa" . "https://melpa.org/packages/") t))
 
@@ -69,16 +72,16 @@
     expand-region
     flycheck
     gist
-    git-timemachine
-    gitconfig-mode
-    gitignore-mode
+    ;; git-timemachine
+    ;; gitconfig-mode
+    ;; gitignore-mode
     god-mode
     grizzl
     guru-mode
     imenu-anywhere
     ov
     projectile
-    magit
+    ;; magit
     move-text
     operate-on-number
     smart-mode-line

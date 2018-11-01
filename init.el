@@ -139,4 +139,21 @@ by Prelude.")
  ;; greet the use with some useful tip
  (run-at-time 5 nil 'prelude-tip-of-the-day))
 
+;; pdf org-beamer
+(setq backup-directory-alist '(("." . "~/.emacs-saves")))
+(setq auto-save-file-name-transforms
+  `((".*" "~/.emacs-saves/" t)))
+
+(require 'ox-beamer)
+(require 'ox-latex)
+(setq org-export-allow-bind-keywords t)
+(setq org-latex-listings 'minted)
+(add-to-list 'org-latex-packages-alist '("" "minted"))
+(org-babel-do-load-languages 'org-babel-load-languages '((python . t) (C . t) (ruby . t) (js . t) (java . t)))
+(setq org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+
+(setq projectile-indexing-method 'alien)
 ;;; init.el ends here

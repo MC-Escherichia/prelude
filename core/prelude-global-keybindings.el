@@ -111,6 +111,16 @@
 (global-set-key (kbd "s-.") 'avy-goto-word-or-subword-1)
 (global-set-key (kbd "s-w") 'ace-window)
 
+
+;; Emacs Live Bindings
+;;make ^h delete rather than help
+(global-set-key (kbd "C-h") 'delete-backward-char)
+
+
+;;redefine help shortcut
+(global-set-key (kbd "M-h") 'help-command)
+
+
 (provide 'prelude-global-keybindings)
 
 ;;; prelude-global-keybindings.el ends here

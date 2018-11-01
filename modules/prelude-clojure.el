@@ -58,8 +58,19 @@
 
      (setq prelude-cider-repl-mode-hook 'prelude-cider-repl-mode-defaults)
 
+     (define-key clojure-mode-map (kbd "C-c M-b") #'cider-eval-buffer)
+
      (add-hook 'cider-repl-mode-hook (lambda ()
                                        (run-hooks 'prelude-cider-repl-mode-hook)))))
+
+(require 'midje-mode)
+
+(add-to-list 'midje-mode-hook
+  '(lambda ()
+      (define-key midje-mode-map (kbd "C-c p") nil)
+      (define-key midje-mode-map (kbd "C-c n") nil)
+      (define-key midje-mode-map (kbd "C-c C-p") #'midje-previous-fact)
+      (define-key midje-mode-map (kbd "C-c C-n") #'midje-next-fact)))
 
 (provide 'prelude-clojure)
 
