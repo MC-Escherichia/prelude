@@ -33,8 +33,10 @@
 ;;; Code:
 
 (require 'prelude-programming)
+(require 'mfc-packages)
 (prelude-require-packages '(rainbow-delimiters))
-
+(use-package lispy
+  :hook ((lisp-interaction-mode lisp-mode emacs-lisp-mode clojure-mode) . lispy-mode))
 ;; Lisp configuration
 (define-key read-expression-map (kbd "TAB") 'completion-at-point)
 
@@ -58,6 +60,7 @@
   (whitespace-mode -1))
 
 (setq prelude-interactive-lisp-coding-hook 'prelude-interactive-lisp-coding-defaults)
+
 
 (provide 'prelude-lisp)
 

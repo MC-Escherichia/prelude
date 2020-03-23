@@ -109,22 +109,27 @@ This is DEPRECATED, use %s instead." prelude-modules-file))
 
 (message "Loading Prelude's core...")
 
+(defun heregoes (sym)
+  (message (format "Loading module: %s " (symbol-name sym)))
+  (require sym))
+
+
 ;; the core stuff
-(require 'prelude-packages)
-(require 'prelude-custom)  ;; Needs to be loaded before core, editor and ui
-(require 'prelude-ui)
-(require 'prelude-core)
-(require 'prelude-mode)
-(require 'prelude-editor)
-(require 'prelude-global-keybindings)
+(heregoes 'prelude-packages)
+(heregoes 'prelude-custom)  ;; Needs to be loaded before core, editor and ui
+(heregoes 'prelude-ui)
+(heregoes 'prelude-core)
+(heregoes 'prelude-mode)
+(heregoes 'prelude-editor)
+(heregoes 'prelude-global-keybindings)
 
 ;; macOS specific settings
 (when (eq system-type 'darwin)
-  (require 'prelude-macos))
+  (heregoes 'prelude-macos))
 
 ;; Linux specific settings
 (when (eq system-type 'gnu/linux)
-  (require 'prelude-linux))
+  (heregoes 'prelude-linux))
 
 (message "Loading Prelude's modules...")
 
