@@ -47,21 +47,30 @@
   :config (load-theme 'zenburn t))
 (use-package ag)
 
+(defun ora-move-beginning-of-line ()
+  (interactive)
+  (if (bolp)
+      (back-to-indentation)
+    (beginning-of-line)))
+
 (define-prefix-command 'mfc-editing-map)
 (global-set-key (kbd "C-o") mfc-editing-map)
+(global-set-key (kbd "C-a") 'ora-move-beginning-of-line)
 (global-set-key (kbd "C-p") counsel-help-map)
 (global-set-key (kbd "C-h") 'previous-line)
 (global-set-key (kbd "C-u") 'undo)
 (global-set-key (kbd "C-/") 'universal-argument)
-;(global-set-key (kbd "<f1>") 'universal-argument)
+(global-unset-key (kbd "<up>"))
+(global-set-key (kbd "<up>") 'previous-line)
+                                        ;(global-set-key (kbd "<f1>") 'universal-argument)
 (global-set-key (kbd "M-j") 'open-line)
-
 
 (use-package yasnippet-snippets)
 
 (use-package yasnippet
   :config (yas-global-mode)
   :bind (:map mfc-editing-map
+
               ("S" . 'yas-insert-snippet)
               ("s" . 'yas-expand)))
 
@@ -80,5 +89,21 @@
   (server-mode -1))
 
 (global-set-key (kbd "C-x M-c") #'mfc-kill-server)
+(require 'avy)
+(global-set-key (kbd "C-'") 'avy-goto-char)
+
+(add-hook 'text-mode-hook 'auto-fill-mode)
+
+(setq-default fill-column 80)
+
+(global-unset-key (kbd "C-c t"))
+
+(require 'treemacs)
+(define-key mfc-editing-map (kbd "t") 'treemacs)
+
+(setq backup-directory-alist
+      `(("." . ,(concat user-emacs-directory "backups"))))
+
+(setq create-lockfiles nil)
 
 (provide 'mfc-init)

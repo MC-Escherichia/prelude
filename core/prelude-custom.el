@@ -43,11 +43,6 @@
   :type 'boolean
   :group 'prelude)
 
-(defcustom prelude-guru t
-  "Non-nil values enable `guru-mode'."
-  :type 'boolean
-  :group 'prelude)
-
 (defcustom prelude-whitespace t
   "Non-nil values enable Prelude's whitespace visualization."
   :type 'boolean

@@ -11,7 +11,7 @@
 (require 'bind-key)
 (require 'diminish)
 (require 'use-package-ensure)
-(setq use-package-always-ensure t)  
+(setq use-package-always-ensure t)
 
 (use-package dash)
 (use-package dash-functional)
@@ -19,6 +19,12 @@
 (use-package f)
 (use-package kv)
 (use-package ht)
+
+(defmacro csetq (variable value)
+  `(funcall (or (get ',variable 'custom-set) 'set-default) ',variable ,value))
+(defun ora-advice-add (&rest args)
+  (when (fboundp 'advice-add)
+    (apply #'advice-add args)))
 
 
 
