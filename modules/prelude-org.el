@@ -7,7 +7,7 @@
 ;; Version: 1.0.0
 ;; Keywords: convenience
 
-;; This file is not part of GNU Emacs.
+;;This file is not part of GNU Emacs.
 
 ;;; Commentary:
 
@@ -74,7 +74,7 @@
     org-directory "~/Code/org/"
     org-agenda-files (--filter (s-match ".*org$" it) (f-files "~/Code/org/tasks"))
     org-startup-folded t
-    org-archive-location "~/Code/org/archive/gtd.org_archive")
+    org-archive-location "~/Code/org/archive/gtd.org::")
    ;; todo keywords
    (setq-default org-todo-keywords
                  '((sequence "TODO(t)" "NEXT(n)"
@@ -154,19 +154,21 @@
 
 (setq org-capture-templates
       (quote (("t" "Todo" entry (file+headline "~/Code/org/refile.org" "Todo")
-               "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
-              ("r" "respond" entry (file+headline "~/Code/org/refile.org" "Respond")
-                   "* NEXT Respond to %:from on %:subject\nSCHEDULED: %t\n%U\n%a\n")
+               "* TODO %?\n %U\n" :clock-in t :clock-resume t)
+              ("i" "Investigate" entry (file+headline "~/Code/org/refile.org" "Investigate")
+               "* TODO %? :investigate:\n\n%U\n%a\n" :clock-in t :clock-resume t)
+              ("r" "respond" entry (file+headline "~/Code/org/tasks/respond.org" "Respond")
+               "* NEXT Urgent %? \nSCHEDULED: %t\n%U\n%a\n")
               ("n" "Note" entry (file+headline "~/Code/org/refile.org" "Notes")
                "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
               ("j" "Journal" entry (file "~/Code/org/diary.org")
                "* %?\n%U\n" :clock-in t :clock-resume t)
               ("w" "Tweak" entry (file+headline "~/Code/org/refile.org" "Tweaks")
-                   "* IDEA %? :tweak: \n")
+               "* IDEA %? :tweak: \n")
               ("i" "Idea" entry (file+headline "~/Code/org/refile.org" "Ideas")
-                   "* IDEA %? \n%U\n%a\n")
+               "* IDEA %? \n%U\n%a\n")
               ("m" "Meeting" entry (file "~/Code/org/refile.org")
-                   "* MEETING with %? :MEETING:\n%U" :clock-in t :clock-resume t)
+               "* MEETING with %? :MEETING:\n%U\n" :clock-in t :clock-resume t)
               ("h" "Habit" entry (file "~/Code/org/refile.org")
                "* NEXT %?\n%U\n%a\nSCHEDULED: %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")\n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n"))))
 
@@ -275,6 +277,8 @@ _y_: ?y? year       _q_: quit           _L__l__c_: log = ?l?"
   ("q" (message "Abort") :exit t)
   ("x" org-agenda-exit :exit t)
   ("v" nil))
+
+(setq org-archive-location "~/Code/org/archive.org::* From %s")
 
 (provide 'prelude-org)
 

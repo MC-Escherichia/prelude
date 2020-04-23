@@ -35,14 +35,14 @@
 (require 'prelude-programming)
 (prelude-require-packages '(scala-mode lsp-mode))
 
-(defun prelude-scala-mode-defaults ()
-  (subword-mode +1)
-  (lsp))
+;; (defun prelude-scala-mode-defaults ()
+;;   (subword-mode +1)
+;;   (lsp))
 
-(setq prelude-scala-mode-hook 'prelude-scala-mode-defaults)
+;; (setq prelude-scala-mode-hook 'prelude-scala-mode-defaults)
 
-(add-hook 'scala-mode-hook (lambda ()
-                             (run-hooks 'prelude-scala-mode-hook)))
+;; (add-hook 'scala-mode-hook (lambda ()
+;;                              (run-hooks 'prelude-scala-mode-hook)))
 (provide 'prelude-scala)
 
 ;;; prelude-scala.el ends here
